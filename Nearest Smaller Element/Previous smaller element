@@ -1,0 +1,28 @@
+source : https://www.youtube.com/watch?v=_RtghJnM1Qo
+
+practice : https://www.interviewbit.com/problems/nearest-smaller-element/
+
+code : import java.util.Stack;
+
+public class Solution {
+    public int[] prevSmaller(int[] A) {
+        Stack<Integer> st = new Stack<>();
+        int n = A.length;
+        int[] result = new int[n]; // Array to store results
+
+        for (int i = 0; i < n; i++) {
+            while (!st.isEmpty() && st.peek() >= A[i]) {
+                st.pop();
+            }
+            if (st.isEmpty()) {
+                result[i] = -1;
+            } else {
+                result[i] = st.peek();
+            }
+            st.push(A[i]);
+        }
+
+        return result;
+    }
+
+}

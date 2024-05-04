@@ -1,0 +1,97 @@
+https://www.geeksforgeeks.org/problems/implement-two-stacks-in-an-array/1
+
+1ST WAY : 
+
+class twoStacks
+{
+         ArrayList<Integer> al;
+    twoStacks()
+    {    al=new ArrayList<>();
+         al.add(-1);
+    }
+    //Function to push an integer into the stack1.
+    void push1(int x)
+    {
+     al.add(0,x);
+    }
+    //Function to push an integer into the stack2.
+    void push2(int x)
+    {
+      al.add(x); 
+    }
+    //Function to remove an element from top of the stack1.
+    int pop1()
+    {    if(al.get(0)!=-1)
+       return  al.remove(0);
+         
+        else return -1;
+    }
+    //Function to remove an element from top of the stack2.
+    int pop2()
+    {    if(al.get(al.size()-1)!=-1)
+       return al.remove(al.size()-1) ;
+       else return  -1;
+    }
+}
+
+2ND WAY : 
+
+class TwoStacks {
+    private int[] arr;
+    private int top1, top2;
+    private int size;
+
+    // Constructor to initialize the two stacks
+    public TwoStacks(int n) { // size of the array
+        size = n;
+        arr = new int[n];
+        top1 = -1;
+        top2 = n;
+    }
+
+    // Function to push an integer into the first stack
+    public void push1(int x) {
+        // Check if there is space between top1 and top2
+        if (top1 < top2 - 1) {
+            top1++;
+            arr[top1] = x;
+        } else {
+            System.out.println("Stack Overflow in Stack 1");
+        }
+    }
+
+    // Function to push an integer into the second stack
+    public void push2(int x) {
+        // Check if there is space between top1 and top2
+        if (top1 < top2 - 1) {
+            top2--;
+            arr[top2] = x;
+        } else {
+            System.out.println("Stack Overflow in Stack 2");
+        }
+    }
+
+    // Function to pop an element from the first stack
+    public int pop1() {
+        if (top1 >= 0) {
+            int x = arr[top1];
+            top1--;
+            return x;
+        } else {
+            System.out.println("Stack Underflow in Stack 1");
+            return -1;
+        }
+    }
+
+    // Function to pop an element from the second stack
+    public int pop2() {
+        if (top2 < size) {
+            int x = arr[top2];
+            top2++;
+            return x;
+        } else {
+            System.out.println("Stack Underflow in Stack 2");
+            return -1;
+        }
+    }
+}

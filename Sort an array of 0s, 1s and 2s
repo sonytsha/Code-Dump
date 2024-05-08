@@ -1,0 +1,57 @@
+https://www.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1?page=1&sortBy=submissions
+
+1) import java.util.Arrays;
+class Solution
+{
+    public static void sort012(int a[], int n)
+    {
+        // code here 
+        Arrays.sort(a);
+    }
+}
+
+2) The problem of sorting an array of 0s, 1s, and 2s is a classic one, often called the "Dutch National Flag problem," originally proposed by Edsger Dijkstra. The optimal solution for this problem is to sort the array with a single traversal, which can be achieved using a three-pointer technique. This approach maintains three indices low, mid, and high to sort the array in linear time 
+𝑂
+(
+𝑛
+)
+O(n) and constant space 
+𝑂
+(
+1
+)
+O(1).
+
+Here's how you can implement it:
+
+class Solution {
+    public static void sort012(int[] a, int n) {
+        int low = 0;
+        int mid = 0;
+        int high = n - 1;
+        int temp;
+        
+        while (mid <= high) {
+            switch (a[mid]) {
+                case 0: {
+                    temp = a[low];
+                    a[low] = a[mid];
+                    a[mid] = temp;
+                    low++;
+                    mid++;
+                    break;
+                }
+                case 1:
+                    mid++;
+                    break;
+                case 2: {
+                    temp = a[high];
+                    a[high] = a[mid];
+                    a[mid] = temp;
+                    high--;
+                    break;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+The task is to generate the first N natural numbers whose digits only include {1, 2, 3} and ensure they are in sorted order. We'll use a queue to perform a level-order traversal-like process to generate these numbers in the correct order. As you've noted, using a queue facilitates the horizontal traversal needed to keep the numbers sorted.
+
+
+  import java.util.LinkedList;
+import java.util.Queue;
+
+public class Main {
+    public static void main(String[] args) {
+        int N = 10; // Example input
+        System.out.println(getFirstNNaturalNumbers(N));
+    }
+
+    public static String getFirstNNaturalNumbers(int N) {
+        if (N <= 0) {
+            return ""; // If N is zero or negative, return an empty string
+        }
+        
+        // A StringBuilder to hold our result for efficient string concatenation
+        StringBuilder result = new StringBuilder();
+        Queue<Integer> queue = new LinkedList<>();
+        
+        // Start by adding 1, 2, and 3 to the queue
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+
+        // We need the first N numbers, so run the loop N times
+        for (int i = 0; i < N; i++) {
+            // Remove the front of the queue
+            int current = queue.poll();
+            
+            // Append the current number to the result
+            if (i > 0) result.append(", ");
+            result.append(current);
+            
+            // Generate the next level of numbers by appending 1, 2, and 3 to the current number
+            if (current <= Integer.MAX_VALUE / 10) { // Check to prevent integer overflow
+                queue.add(current * 10 + 1);
+                queue.add(current * 10 + 2);
+                queue.add(current * 10 + 3);
+            }
+        }
+
+        return result.toString();
+    }
+}

@@ -1,0 +1,26 @@
+https://www.geeksforgeeks.org/problems/lcm-and-gcd4516/1
+
+class Solution {
+    static Long[] lcmAndGcd(Long A, Long B) {
+        // Compute GCD using the Euclidean algorithm
+        Long gcd = gcd(A, B);
+        // Compute LCM using the relationship LCM * GCD = A * B
+        // To prevent overflow, use (A / gcd) * B
+        Long lcm = (A / gcd) * B;  // Calculate LCM in a way that reduces the chance of overflow
+        
+        // Return an array of Long containing LCM and GCD
+        return new Long[] {lcm, gcd};
+    }
+
+    // Helper method to compute GCD using the Euclidean algorithm
+    static Long gcd(Long a, Long b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
+    public static void main(String[] args) {
+        // Test the method
+        Long[] result = lcmAndGcd(15L, 20L);
+        System.out.println("LCM: " + result[0] + ", GCD: " + result[1]);
+    }
+}

@@ -1,0 +1,52 @@
+import java.util.Deque;
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        Deque<Integer> d = new LinkedList<>(); // Declaration of deque
+
+        // Insertion of x at front end
+        int x = 5;
+        d.addFirst(x);
+
+        // Deletion from front end
+        d.removeFirst();
+
+        // Insertion of x at back end
+        d.addLast(x);
+
+        // Deletion from back end
+        d.removeLast();
+
+        // Returns the element at the front end
+        if (!d.isEmpty()) { // Always good to check if the deque is not empty before accessing elements
+            System.out.println(d.getFirst());
+        }
+
+        // Returns the element at the back end
+        if (!d.isEmpty()) { // Always good to check if the deque is not empty before accessing elements
+            System.out.println(d.getLast());
+        }
+
+        // Returns the size of the deque
+        System.out.println(d.size());
+    }
+}
+
+Explanation of Java Code:
+import Statements: Necessary to use Deque and LinkedList classes from the Java Collections Framework.
+Declaration: A Deque<Integer> named d is instantiated as a LinkedList<>. This setup allows the LinkedList to be used with deque operations.
+Operations:
+d.addFirst(x): Adds an element x to the front of the deque.
+d.removeFirst(): Removes the element from the front of the deque. Should be used with an isEmpty() check to avoid NoSuchElementException.
+d.addLast(x): Adds an element x to the back of the deque.
+d.removeLast(): Removes the element from the back of the deque. Similar to removeFirst(), should be used with an isEmpty() check.
+d.getFirst(): Retrieves, but does not remove, the first element of the deque. It throws NoSuchElementException if the deque is empty.
+d.getLast(): Retrieves, but does not remove, the last element of the deque. Same error handling as getFirst().
+d.size(): Returns the number of elements in the deque.
+Using LinkedList for Deque Implementation:
+Using a LinkedList is indeed helpful for implementing a deque in Java because:
+
+It allows constant time complexity (O(1)) for adding and removing elements from both ends.
+LinkedList is designed to be efficient for such operations as it internally manages a doubly-linked list, facilitating easy insertion and deletion at both head and tail.
+This approach fully leverages Java's built-in LinkedList functionalities to mimic the behavior of a deque as seen in other languages like C++, while ensuring that operations are handled efficiently.

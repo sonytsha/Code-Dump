@@ -55,3 +55,13 @@ class Solution {
         }
     }
 }
+
+Explanation:
+Initialization: low and mid are initialized at the start of the array, and high is initialized at the end of the array.
+Process:
+Traverse the array using mid index.
+If the element at mid is 0, swap it with the element at low and increment both low and mid.
+If the element is 1, just move mid forward.
+If the element is 2, swap it with the element at high and decrement high, but keep mid at the same position to check the swapped-in element in the next iteration.
+Termination: The loop runs until mid surpasses high.
+This implementation ensures that the array is sorted in a single pass, which is more efficient than using Arrays.sort(), especially for the specified problem constraints where the elements are limited to three distinct values.

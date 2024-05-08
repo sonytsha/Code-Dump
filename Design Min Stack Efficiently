@@ -1,0 +1,55 @@
+public class Main {
+    static final int N = 1005;
+    static class Stack {
+        int[] arr = new int[N];
+        int top = -1; // Initialize top to -1, indicating an empty stack.
+    }
+
+    static Stack s = new Stack(); // Create an instance of Stack.
+
+    static boolean isEmpty() {
+        return s.top == -1;
+    }
+
+    static boolean isFull() {
+        return s.top == N - 1;
+    }
+
+    static int top() {
+        if (isEmpty()) {
+            System.out.println("UnderFlow");
+            return -1;
+        } else {
+            return s.arr[s.top];
+        }
+    }
+
+    static void push(int x) {
+        if (isFull()) {
+            System.out.println("Over Flow");
+        } else {
+            s.top++;
+            s.arr[s.top] = x;
+        }
+    }
+
+    static void pop() {
+        if (isEmpty()) {
+            System.out.println("UnderFlow");
+        } else {
+            s.top--;
+        }
+    }
+
+    public static void main(String[] args) {
+        push(1);
+        push(2);
+        push(3);
+        System.out.println(top());
+        pop();
+        System.out.println(top());
+        pop();
+        System.out.println(top());
+        pop();
+    }
+}

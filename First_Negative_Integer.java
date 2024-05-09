@@ -14,6 +14,9 @@ Using Queue - Here, the positive numbers are useless for us. Therefore, we can k
 Time complexity: O(N)
 Space complexity: O(N)  */
 
+
+https://www.geeksforgeeks.org/first-negative-integer-every-window-size-k/
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 

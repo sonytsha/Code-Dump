@@ -1,0 +1,40 @@
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow= head;
+        ListNode fast= head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+}
+
+How It Works:
+Initialization: Two pointers, slow and fast, are initialized to the head of the list. The slow pointer moves one step at a time, while the fast pointer moves two steps at a time.
+While Loop: The loop continues as long as fast and fast.next are not null. The check for fast.next ensures that accessing fast.next.next does not result in a null pointer exception.
+Pointer Movement:
+slow = slow.next;: Each iteration moves the slow pointer one node forward.
+fast = fast.next.next;: Each iteration moves the fast pointer two nodes forward.
+Loop Termination: The loop terminates when the fast pointer reaches the end of the list (fast == null) or just before the end (fast.next == null for even number of nodes). At this termination point, the slow pointer will be at the middle of the list.
+Example Walkthrough with [1,2,3,4,5]:
+Start:
+slow → 1
+fast → 1
+First Iteration:
+slow → 2
+fast → 3
+Second Iteration:
+slow → 3
+fast → 5
+Third Iteration:
+slow → 4
+fast → null (end of the list)
+Loop exits.
+After the loop exits, slow is pointing to the node with value 3, which is the middle of the list. Since the list is odd-numbered, the middle is clearly just one node.
+
+Output:
+When slow is returned, it points to the sublist starting from the middle node [3, 4, 5].
+
+Conclusion:
+This method is efficient (O(n) time complexity where n is the number of nodes, with O(1) extra space) and elegantly finds the middle of the list using two pointers. It's especially useful in situations where the length of the list is not known beforehand or when space efficiency is crucial.

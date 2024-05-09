@@ -1,3 +1,19 @@
+/*We have been given an integer array Arr[N] and an integer k, 0<k<=N. Find the first negative integer in every subarray of size k.
+
+Input: Arr[6]  = {6. -2, -1, 7, 9, -3}. k=4
+Output: -2, 0, 0, -1
+
+Note: In case a subarray contains no negative element, print zero
+
+Approach:
+
+Brute Force - Create a nested loop to consider all the subarrays of size k and find the negative element in the subarray.
+Time complexity: O((N-k+1)k)
+
+Using Queue - Here, the positive numbers are useless for us. Therefore, we can keep storing the negative elements in a queue, such that for each subarray the first element of the queue will be the required answer.
+Time complexity: O(N)
+Space complexity: O(N)  */
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 

@@ -65,3 +65,40 @@ public class First_Negative_Integer {
         return result;
     }
 }
+
+
+OR BRUTE FORCE :
+
+class Compute {
+    
+    public long[] printFirstNegativeInteger(long A[], int N, int K) {
+        // Create an array to store the first negative numbers for each window
+        long[] result = new long[N - K + 1];
+        
+        // Variable to track the presence of a negative number
+        boolean flag;
+
+        // Loop over each subarray starting point
+        for (int i = 0; i <= N - K; i++) {
+            flag = false; // Reset flag for each subarray
+
+            // Check each element in the subarray
+            for (int j = 0; j < K; j++) {
+                if (A[i + j] < 0) { // Correct condition to check for negativity
+                    result[i] = A[i + j];
+                    flag = true;
+                    break;
+                }
+            }
+
+            // If no negative number was found, set result to 0
+            if (!flag) {
+                result[i] = 0;
+            }
+        }
+
+        // Return the results array
+        return result;
+    }
+}
+

@@ -1,0 +1,65 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void deleteNode(ListNode node) {
+        // Edge case: if the node is null or there's no next node, do nothing
+        if (node == null || node.next == null) {
+            return;
+        }
+        
+        // Step 1: Copy the data from the next node to this node
+        node.val = node.next.val;
+        
+        // Step 2: Delete the next node
+        node.next = node.next.next;
+    }
+}
+
+
+
+
+O(1) TIME AND SPACE
+
+Linked List Setup:
+You have a linked list and a specific node you are given:
+
+Linked List: 4 → 5 → 1 → 9
+Node to Delete: 5
+The list looks like this:
+
+Head: 4
+Node: 5 (This is the node given to you for deletion)
+Next Node(s): 1 → 9
+The Task:
+Delete the node with the value 5 from the list, without being given the head of the list. You only have access to the node 5.
+Given Code for Deletion:
+java
+Copy code
+public void deleteNode(ListNode node) {
+    if (node == null || node.next == null) {
+        return;
+    }
+    node.val = node.next.val;
+    node.next = node.next.next;
+}
+Step-by-Step Explanation Using the Example:
+Check for Null: The code first checks if the node is null or if node.next is null. In this case, node is 5 and node.next is 1, so neither condition is met, and the code proceeds.
+Copy Next Node's Data:
+node.val = node.next.val;
+This line changes the value of the node you are given (node with value 5) to the value of its next node (node with value 1).
+Now, the node originally containing 5 will contain 1.
+Linked list now effectively looks like: 4 → 1 → 1 → 9
+Skip Over the Next Node:
+node.next = node.next.next;
+This line sets the next pointer of the current node (which now contains 1) to point to the next-next node of the original node.
+The original next node was 1, and its next node is 9.
+You are effectively skipping the middle 1 and pointing directly to 9.
+Linked list now looks like: 4 → 1 → 9
+Final List:
+After the operation, the linked list is 4 → 1 → 9, which matches the expected output. The node 5 was "deleted" by transforming it into the next node (1) and then unlinking the next node (1).

@@ -1,0 +1,47 @@
+class Solution
+{
+    //Function to count nodes of a linked list.
+    public static int getCount(Node head)
+    {
+        int count = 0;  // Initialize count
+        Node current = head;  // Initialize current
+        while (current != null) {
+            count++;  // Increment count
+            current = current.next;  // Move to next node
+        }
+        return count;  // Return the count
+    }
+}
+
+Explanation:
+Initialize Counter:
+int count = 0;: Start a counter at 0 to keep track of the number of nodes.
+Traverse the List:
+Node current = head;: Start with the head of the list.
+while (current != null) {: Use a while loop to traverse the list. The loop continues as long as the current node is not null.
+Inside the loop, increment the count for each node encountered:
+count++;: Increase the count by one.
+current = current.next;: Move to the next node in the list.
+Return the Result:
+return count;: After the loop completes (i.e., current is null, indicating the end of the list), return the total count.
+Performance:
+Time Complexity: The time complexity of this method is 
+𝑂
+(
+𝑁
+)
+O(N), where 
+𝑁
+N is the number of nodes in the list. This is because each node is visited exactly once.
+Space Complexity: The space complexity is 
+𝑂
+(
+1
+)
+O(1) as no additional space proportional to the input size is used; only two extra variables are needed regardless of the list size.
+This solution is optimal for counting nodes in a singly linked list as it balances efficiency with simplicity, adhering to the constraints and expected time complexity of 
+𝑂
+(
+𝑁
+)
+O(N).

@@ -1,0 +1,186 @@
+https://leetcode.com/problems/palindrome-linked-list/solutions/4908031/interview-approach-4-approach-list-stack-recursion-two-pointer-approach/ -- MUST CHECK !!!!!
+https://leetcode.com/problems/palindrome-linked-list/description/
+
+1) class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) {
+            // It's a palindrome by definition
+            return true;
+        }
+
+        // Initialize two pointers, slow and fast,
+        // to find the middle of the linked list
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Traverse the linked list to find the
+        // middle using slow and fast pointers
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Reverse the second half of the
+        // linked list starting from the middle
+        ListNode newHead = reverseLinkedList(slow.next);
+
+        // Pointer to the first half
+        ListNode first = head;
+
+        // Pointer to the reversed second half
+        ListNode second = newHead;
+        while (second != null) {
+            // Compare data values of nodes from both halves
+            if (first.val != second.val) {
+                // Not a palindrome
+                return false;
+            }
+
+            // Move the first and second pointers
+            first = first.next;
+            second = second.next;
+        }
+
+        // Optional: Reverse the second half back to its original state
+        // slow.next = reverseLinkedList(newHead);
+
+        // The linked list is a palindrome
+        return true;
+    }
+
+    private ListNode reverseLinkedList(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode nextTemp = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextTemp;
+        }
+        return prev;
+    }
+}
+
+
+
+
+
+2) class Solution {
+    public boolean isPalindrome(ListNode head) {
+        List<Integer> values = new ArrayList<>();
+
+        // First pass: Copy list values into the array
+        ListNode current = head;
+        while (current != null) {
+            values.add(current.val);
+            current = current.next;
+        }
+
+        // Second pass: Check for palindrome using two pointers
+        int left = 0;
+        int right = values.size() - 1;
+        while (left < right) {
+            if (!values.get(left).equals(values.get(right))) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
+
+Explanation:
+List Copying: We start by iterating through the linked list from the head to the end, copying each node's value into an ArrayList. This allows us to efficiently access elements by index later.
+Palindrome Check: We then use a two-pointer approach to check for palindromicity. One pointer starts at the beginning (left) and the other at the end (right) of the array. We compare the elements at these pointers; if any pair of elements is not equal, the list cannot be a palindrome. If we can iterate through the whole array without finding mismatching elements, the list is a palindrome.
+Complexity:
+Time Complexity: O(n), where n is the number of nodes in the linked list. We traverse the list once to copy the values and then traverse the array up to half its length in the worst case.
+Space Complexity: O(n), due to the extra space used to store the node values in an array.
+This method is not the most space-efficient, but it is easy to implement and understand. For space optimization (reducing it to O(1)), advanced techniques involving list reversal and slow/fast pointers can be used, but these are more complex to implement correctly.
+
+Time Complexity (TC):
+Copying List Values to the ArrayList:
+The first pass through the linked list involves iterating over each node exactly once to copy its value into an ArrayList. If there are 
+𝑛
+n nodes in the list, this operation will take 
+𝑂
+(
+𝑛
+)
+O(n) time.
+Palindrome Check Using Two Pointers:
+After copying the values into the ArrayList, the algorithm then uses a two-pointer technique to check if the array is a palindrome. The check involves iterating from the start and end towards the center, comparing elements until the two pointers meet or cross. This operation involves checking at most 
+𝑛
+2
+2
+n
+​
+  pairs, resulting in a time complexity of 
+𝑂
+(
+𝑛
+/
+2
+)
+O(n/2), which simplifies to 
+𝑂
+(
+𝑛
+)
+O(n).
+Adding these two parts together, the total time complexity for the function is 
+𝑂
+(
+𝑛
+)
++
+𝑂
+(
+𝑛
+)
+=
+𝑂
+(
+𝑛
+)
+O(n)+O(n)=O(n).
+
+Space Complexity (SC):
+Space Used by the ArrayList:
+The solution requires additional space to store the node values of the linked list in an ArrayList. Since every node value is stored once, the ArrayList will use space proportional to the number of nodes, 
+𝑛
+n. Therefore, the space complexity is 
+𝑂
+(
+𝑛
+)
+O(n) due to the ArrayList.
+Other Variables:
+Aside from the ArrayList, the solution uses a few extra variables (current, left, right), but these are constant in terms of space usage and do not scale with the size of the input.
+Thus, the total space complexity for this function is 
+𝑂
+(
+𝑛
+)
+O(n).
+
+Summary:
+Time Complexity: 
+𝑂
+(
+𝑛
+)
+O(n) - The algorithm passes through the linked list twice, each pass being linear with respect to the number of nodes in the list.
+Space Complexity: 
+𝑂
+(
+𝑛
+)
+O(n) - The primary space cost comes from storing all node values of the list in an ArrayList to facilitate easy element comparison.
+This solution is easy to implement and understand due to its straightforward approach, albeit at the expense of higher space usage compared to more complex techniques that could potentially reduce the space requirement to 
+𝑂
+(
+1
+)
+O(1).

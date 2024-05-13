@@ -1,0 +1,49 @@
+class Solution {
+    int maxDiameter;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        maxDiameter = 0;
+        calculateDepth(root);
+        return maxDiameter;
+    }
+
+    private int calculateDepth(TreeNode node) {
+        if (node == null) return 0;
+        int leftDepth = calculateDepth(node.left);
+        int rightDepth = calculateDepth(node.right);
+        maxDiameter = Math.max(maxDiameter, leftDepth + rightDepth);
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+}
+
+
+The time complexity of the diameterOfBinaryTree function is O(N), where N is the number of nodes in the binary tree. This is because we visit each node once to calculate the depth of its subtree.
+
+The space complexity is O(H), where H is the height of the binary tree. This space is used for the recursive call stack during the depth-first traversal. In the worst-case scenario, where the tree is completely unbalanced (skewed), the height of the tree becomes equal to the number of nodes, resulting in O(N) space complexity. However, in balanced binary trees, the space complexity is typically O(log N), where N is the number of nodes.
+
+2ND WAY :
+
+class Solution {
+    public int diameterOfBinaryTree(TreeNode root) {
+        int diameter[] = new int[1];
+        height(root,diameter);
+        return diameter[0];
+    }
+
+    public int height(TreeNode root, int diameter[]){
+        
+        if(root == null){
+            return 0;
+        }
+
+        // Recursively calculate the height of the left and right subtrees
+        int left = height(root.left,diameter);
+        int right = height(root.right,diameter);
+
+        // Update the diameter array by taking the maximum diameter that passes through the current node
+        diameter[0] = Math.max(diameter[0],left + right);
+
+        // Return the maximum depth of the current node by adding 1 to the maximum depth of its deepest subtree
+        return Math.max(left,right)+1;
+    }
+}

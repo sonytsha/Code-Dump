@@ -1,0 +1,21 @@
+using two pointer :
+https://www.geeksforgeeks.org/problems/palindrome-string0817/1?page=2&sortBy=submissions
+
+class Solution {
+    int isPalindrome(String S) {
+        // code here
+        int front = 0;
+        int back = S.length() - 1;
+        while(front < back) {
+            if(S.charAt(front) != S.charAt(back)){
+                return 0;
+            }
+            front++;
+            back--;
+        }
+        return 1;
+    }
+}
+
+TC : N/2
+SC : 1

@@ -1,0 +1,17 @@
+https://www.geeksforgeeks.org/problems/perfect-arrays4645/1?page=2&difficulty=School&sortBy=submissions
+
+
+class Solution {
+    public static boolean isPerfect(int n, int[] arr) {
+        int front = 0;
+        int back = n-1;
+        while (front < back) {
+            if (arr[front] != arr[back]) {
+                return false;
+            }
+            front++;
+            back--;
+        }
+        return true;
+    }
+}

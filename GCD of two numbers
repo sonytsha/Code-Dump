@@ -24,3 +24,21 @@ class Solution {
         return gcd(b, a % b);
     }
 }
+
+
+3) class Solution {
+    public static int gcd(int a, int b) {
+        // Base case: If a is 0, then GCD(a, b) = b
+        if (a == 0) {
+            return b;
+        }
+        
+        // Base case: If b is 0, then GCD(a, b) = a
+        if (b == 0) {
+            return a;
+        }
+        
+        // Recursive case: Apply Euclidean algorithm
+        return gcd(b, a % b);
+    }
+}

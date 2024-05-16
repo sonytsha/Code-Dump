@@ -1,0 +1,14 @@
+https://geeksforgeeks.org/problems/palindromic-array-1587115620/1?page=1&difficulty=School&sortBy=submissions
+
+class GfG {
+    public static int palinArray(int[] a, int n) {
+        for (int i = 0; i < n; i++) {
+            String str = Integer.toString(a[i]);
+            StringBuilder reversed = new StringBuilder(str).reverse();
+            if (!str.equals(reversed.toString())) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+}

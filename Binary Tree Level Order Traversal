@@ -1,0 +1,96 @@
+1) import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
+
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        
+        // Return an empty list if root is null
+        if (root == null) return result;
+
+        // Initialize the queue with the root node
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        // While there are nodes to process in the queue
+        while (!queue.isEmpty()) {
+            // Determine the number of nodes at the current level
+            int levelSize = queue.size();
+            // List to store the values of nodes at the current level
+            List<Integer> currentLevel = new ArrayList<>();
+
+            // Process all nodes at the current level
+            for (int i = 0; i < levelSize; i++) {
+                // Dequeue the next node
+                TreeNode currentNode = queue.poll();
+                // Add its value to the current level list
+                currentLevel.add(currentNode.val);
+
+                // Enqueue left child if it exists
+                if (currentNode.left != null) {
+                    queue.add(currentNode.left);
+                }
+                // Enqueue right child if it exists
+                if (currentNode.right != null) {
+                    queue.add(currentNode.right);
+                }
+            }
+
+            // Add the current level list to the result
+            result.add(currentLevel);
+        }
+
+        // Return the completed level order traversal
+        return result;
+    }
+}
+
+
+2) using recursion : 
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Definition for a binary tree node.
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
+}
+
+public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        traverseLevels(root, 0, result);
+        return result;
+    }
+
+    private void traverseLevels(TreeNode node, int level, List<List<Integer>> result) {
+        if (node == null) {
+            return;
+        }
+
+        // Ensure the list is long enough to hold values for the current level
+        if (result.size() == level) {
+            result.add(new ArrayList<>());
+        }
+
+        // Add the current node's value to the list corresponding to the current level
+        result.get(level).add(node.val);
+
+        // Recurse to the next level
+        traverseLevels(node.left, level + 1, result);
+        traverseLevels(node.right, level + 1, result);
+    }
+}

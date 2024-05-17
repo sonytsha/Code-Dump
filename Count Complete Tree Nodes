@@ -28,3 +28,31 @@ class Solution {
         return count;
     }
 }
+
+
+Time Complexity (TC): 
+𝑂
+(
+𝑛
+)
+O(n)
+Space Complexity (SC): 
+𝑂
+(
+ℎ
+)
+O(h), where 
+ℎ
+h is the height of the tree. This can be 
+𝑂
+(
+log
+⁡
+𝑛
+)
+O(logn) for a balanced tree and 
+𝑂
+(
+𝑛
+)
+O(n) for a skewed tree.

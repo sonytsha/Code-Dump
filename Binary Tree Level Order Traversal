@@ -94,3 +94,30 @@ public class Solution {
         traverseLevels(node.right, level + 1, result);
     }
 }
+
+
+3) public class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        traverseLevels(root, 0, result);
+        return result;
+    }
+
+    private void traverseLevels(TreeNode node, int level, List<List<Integer>> result) {
+        if (node == null) {
+            return;
+        }
+
+        // If this is the first time we're visiting this level, add a new list
+        if (result.size() == level) {
+            result.add(new ArrayList<>());
+        }
+
+        // Add the current node's value to the list corresponding to the current level
+        result.get(level).add(node.val);
+
+        // Recurse to the next level for left and right children
+        traverseLevels(node.left, level + 1, result);
+        traverseLevels(node.right, level + 1, result);
+    }
+}
